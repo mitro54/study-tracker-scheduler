@@ -36,7 +36,7 @@
 *Program loads all necessary data on startup and then prompts user*
 
 *user is presented with a choice to select between (1) Schedule and (2) Tracking*
-    -> user selects scheduling
+-> user selects scheduling
 
         *user is presented with a choice to (1) See current schedule, (2) Create new schedule, (3) Modify current schedule and (4) Set up non negotiable hours*
 
@@ -59,7 +59,7 @@
                             *Program also prints each time the updated schedule until user writes (k) Okay*
 
 
-    -> user selects tracking
+-> user selects tracking
         *program generates current tracking information for each topic, then prompts if user wants to update information y/n*
         -> y
             program then prompts user if they want to (1) Add new topics or
