@@ -16,7 +16,7 @@
 - AS an user i want the program to save to a json file instead of a database
 
 
-### OPTIONAL (IF you have spare time AND really feel like this is necessary after everything functions)
+#### OPTIONAL (IF you have spare time AND really feel like this is necessary after everything functions)
 - AS an user i want to be questioned about the topic on hand by an AI
 - AS an user i want to keep studying about the topic on hand until i can answer all AI questions correctly
 
@@ -35,8 +35,8 @@
 
 *Program loads all necessary data on startup and then prompts user*
 
-*user is presented with a choice to select between (1) Schedule and (2) Tracking*
--> user selects scheduling
+    *user is presented with a choice to select between (1) Schedule and (2) Tracking*
+    -> user selects scheduling
 
         *user is presented with a choice to (1) See current schedule, (2) Create new schedule, (3) Modify current schedule and (4) Set up non negotiable hours*
 
@@ -55,11 +55,16 @@
                             *Program generates the previous schedule if there is one and then asks which data to keep, expecting numerical input in format day/hourstart, day/hourend , reprompts until user writes (k) Okay*
                         -> n
                             *Program then starts generating a new schedule based on user input, starting from day 1. It presents full days two slots per hour as example "12.00 - 13.30: Open" or longer slots as "23.00 - 06.00: Sleep (Non negotiable)"*
-                            *Input is expected as "starthour.minute-endhour.minute: thing", once user is done with a day, user writes (n) Next to repeat this process for each day until all days have been scheduled, or user writes (d) Done.*
-                            *Program also prints each time the updated schedule until user writes (k) Okay*
+                            *Input is expected as "starthour.minute-endhour.minute: thing", once user is done with a day, user writes (k) Okay to repeat this process for each day until all days have been scheduled, or user writes (d) Done.*
+                            *Program also prints each time the newly updated schedule when user makes an addition to it*
+                            
+        -> user selects 3 (Modify current schedule)
+            *Program prints current schedule and then prompts which day to modify*
+                -> user input
+                    *Program prompts user that days schedule and expects modifications in format "starthour.minute-endhour.minute: thing", reprompts until user writes (d) Done*
 
 
--> user selects tracking
+    -> user selects tracking
         *program generates current tracking information for each topic, then prompts if user wants to update information y/n*
         -> y
             program then prompts user if they want to (1) Add new topics or
