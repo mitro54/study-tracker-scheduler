@@ -34,7 +34,7 @@
 **NOTE: At any point user should be able to write (b) to go Back, (r) to get a Reprompt or (q) to Quit without making changes if action is left unfinished**
 
 *Program loads all necessary data on startup and then prompts user*
-
+```
     *user is presented with a choice to select between (1) Schedule and (2) Tracking*
     -> user selects scheduling
 
@@ -57,7 +57,7 @@
                             *Program then starts generating a new schedule based on user input, starting from day 1. It presents full days two slots per hour as example "12.00 - 13.30: Open" or longer slots as "23.00 - 06.00: Sleep (Non negotiable)"*
                             *Input is expected as "starthour.minute-endhour.minute: thing", once user is done with a day, user writes (k) Okay to repeat this process for each day until all days have been scheduled, or user writes (d) Done.*
                             *Program also prints each time the newly updated schedule when user makes an addition to it*
-                            
+
         -> user selects 3 (Modify current schedule)
             *Program prints current schedule and then prompts which day to modify*
                 -> user input
@@ -71,3 +71,4 @@
             Generate numerical list of all topics and ask which topic to update
         -> n
             *Program then waits for next user input (q) Quit, (b) Back or (r) Reprompt*
+```
