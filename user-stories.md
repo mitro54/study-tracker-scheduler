@@ -74,8 +74,9 @@
     -> user selects tracking
         *program generates current tracking information for each topic, then prompts if user wants to update information y/n*
         -> y
-            program then prompts user if they want to (1) Add new topics or
-            Generate numerical list of all topics and ask which topic to update
+            *program then prompts user if they want to (1) Add new topics or (2) Modify current topics*
+                -> user selects 1 (Add new topics)
+                    *program then expects user to input a new topic*
         -> n
-            *Program then waits for next user input (q) Quit, (b) Back or (r) Reprompt*
+            *Program then goes back to the first prompt*
 ```
