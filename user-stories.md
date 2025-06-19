@@ -76,7 +76,9 @@
         -> y
             *program then prompts user if they want to (1) Add new topics or (2) Modify current topics*
                 -> user selects 1 (Add new topics)
-                    *program then expects user to input a new topic*
+                    *program then expects user to input a new topic, saves it to json file, goes back to previous prompt*
+                -> user selects 2 (Modify current topics)
+                    *program asks which topic to modify, prints topics again updated, prompts again until user writes (d) Done*
         -> n
             *Program then goes back to the first prompt*
 ```
