@@ -2,7 +2,7 @@ import sys
 
 def scheduler():
     while True:
-        user_input = input("(1) See current schedule, (2) Create new schedule, (3) Modify current schedule and (4) Set up non negotiable hours: ")
+        user_input = input("(1) See current schedule, (2) Create new schedule, (3) Modify current schedule or (4) Set up non negotiable hours: ").lower()
 
         if user_input == "1":
             print("1")

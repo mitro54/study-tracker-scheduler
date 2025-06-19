@@ -31,7 +31,7 @@
 
 ## WORKFLOW
 
-**NOTE: At any point user should be able to write (b) to go Back, (r) to get a Reprompt or (q) to Quit without making changes if action is left unfinished**
+**NOTE: At any point user should be able to write (b) to go Back or (q) to Quit without making changes if action is left unfinished**
 ```
 *Program loads all necessary data on startup and then prompts user*
 
@@ -74,11 +74,13 @@
     -> user selects tracking
         *program generates current tracking information for each topic, then prompts if user wants to update information y/n*
         -> y
-            *program then prompts user if they want to (1) Add new topics or (2) Modify current topics*
+            *program then prompts user if they want to (1) Add new topics or (2) Update current topics*
                 -> user selects 1 (Add new topics)
-                    *program then expects user to input a new topic, saves it to json file, goes back to previous prompt*
-                -> user selects 2 (Modify current topics)
-                    *program asks which topic to modify, prints topics again updated, prompts again until user writes (d) Done*
+                    *program then expects user to input a new topic, saves it to json file, prompts again until user writes (d) Done*
+                -> user selects 2 (Update current topics)
+                    *program asks which topic to update*
+                        -> user input
+                            *program then modifies the topic and goes back to previous prompt*
         -> n
             *Program then goes back to the first prompt*
 ```

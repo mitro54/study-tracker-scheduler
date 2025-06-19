@@ -3,7 +3,7 @@ import tracker
 
 def main():
     while True:
-        user_input = input("Welcome to Study Tracker/Scheduler. Please select (1) Schedule or (2) Tracking to continue: ")
+        user_input = input("Welcome to Study Tracker/Scheduler. Please select (1) Schedule or (2) Tracking to continue: ").lower()
 
         if user_input == "1":
             scheduler.scheduler()
