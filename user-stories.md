@@ -43,7 +43,7 @@
         -> user selects 1 (See current schedule)
             *Program generates current full schedule and prompts if user wants to upload schedule to Google Calendar y/n*
                 -> y
-                    *program uploads schedule to Google Calendar, go back to very first prompt*
+                    *program uploads schedule to Google Calendar, go back to last prompt*
                 -> n
                     *program goes back to previous choice prompt*
 
