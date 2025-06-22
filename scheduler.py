@@ -84,24 +84,46 @@ def scheduler():
 
             print("Current schedule gets printed here")
             while True:
-                user_input = input("(1) See current schedule, (2) Create new schedule, (3) Modify current schedule or (4) Set up non negotiable hours: ").lower()
+                user_input = input("Which day would you like to modify?: ").lower()
+                loop_checker = False
 
-                # See current schedule
-                if user_input == "1":
+                # Testing if input is int
+                try:
+                    int(user_input)
+                    input_holder = {}
+
                     while True:
-                        print("Full schedule prints here")
-                        user_input = input("Do you want to upload schedule to Google Calendar? y/n: ").lower()
+                        print("Selected days schedule prints here")
+                        user_input = input("Modify your schedule in following format: 00:00-01:00: example , (d) when Done: ").lower()
+
+                        # Back
+                        if user_input == "b":
+                            input_holder = {}
+                            break
+
+                        elif user_input == "q":
+                            sys.exit("Quitting...")
                         
-                        # Yes
-                        if user_input == "y":
-                            print("Uploading schedule to Google Calendar...")
-                            # If ok ... print "success!"
+
+                        # If user_input passes regex, prepare it for the dictionary and then push it to dictionary                     
+                        # input_holder.update(user_input)
+                        
+                        # After user is done, push the input_holders data to JSON, clear input_holder
+                        if user_input == "d":
+                            input_holder = {}
+                            loop_checker = True
                             break
                         
-                        # No or Back
-                        elif user_input == "n" or user_input == "b":
-                            break
+                    if loop_checker:
+                        break
                         
+                # If input is not int, do not raise error
+                except ValueError:
+                        
+                        # Back
+                        if user_input == "b":
+                            break
+
                         elif user_input == "q":
                             sys.exit("Quitting...")
 
