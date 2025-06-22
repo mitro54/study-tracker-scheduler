@@ -4,22 +4,26 @@ def scheduler():
     while True:
         user_input = input("(1) See current schedule, (2) Create new schedule, (3) Modify current schedule or (4) Set up non negotiable hours: ").lower()
 
-        if user_input == "1": # See current schedule
+        # See current schedule
+        if user_input == "1":
             while True:
                 print("Full schedule prints here")
                 user_input = input("Do you want to upload schedule to Google Calendar? y/n: ").lower()
 
-                if user_input == "y": # Yes
+                # Yes
+                if user_input == "y":
                     print("Uploading schedule to Google Calendar...")
                     # If ok ... print "success!"
                     break
-
-                elif user_input == "n" or user_input == "b": # No or Back
+                
+                # No or Back
+                elif user_input == "n" or user_input == "b":
                     break
                 elif user_input == "q":
                     sys.exit("Quitting...")
 
-        elif user_input == "2": # Create new schedule
+        # Create new schedule
+        elif user_input == "2":
             while True:
                 user_input = input("Please provide your new schedule a length in days: ").lower()
 
@@ -31,24 +35,28 @@ def scheduler():
                         user_input = input("Keep any data from previous schedule? y/n: ").lower()
                         loop_checker = False
 
-                        if user_input == "y": # Yes
+                        # Yes
+                        if user_input == "y":
                             print("Previous schedule gets printed here")
                             loop_checker = True
 
                             while True:
                                 user_input = input("What to keep? Format: day/hourstart:minute, day/hourend:minute (write k when done): ")
 
-                                if user_input == "k": # Okay
+                                # Okay
+                                if user_input == "k":
                                     # Then erase everything else from the JSON file and start generating new schedule, will create separate functions for this task
                                     break
-
-                        elif user_input == "n": # No
+                        
+                        # No
+                        elif user_input == "n":
                             # Start generating schedule, will create separate functions for this task once main frame is done
                             print("Generating new schedule")
                             loop_checker = True
                             break
-
-                        elif user_input == "b": # Back
+                        
+                        # Back
+                        elif user_input == "b":
                             break
 
                         elif user_input == "q":
@@ -63,21 +71,47 @@ def scheduler():
 
                 # If input is not int, do not raise error
                 except ValueError:
-
-                    if user_input == "b": # Back
+                    
+                    # Back
+                    if user_input == "b":
                         break
 
                     elif user_input == "q":
                         sys.exit("Quitting...")
 
+        # Modify current schedule
+        elif user_input == "3":
 
-        elif user_input == "3": # Modify current schedule
             print("Current schedule gets printed here")
-        elif user_input == "4": # Set up non negotiable hours
+            while True:
+                user_input = input("(1) See current schedule, (2) Create new schedule, (3) Modify current schedule or (4) Set up non negotiable hours: ").lower()
+
+                # See current schedule
+                if user_input == "1":
+                    while True:
+                        print("Full schedule prints here")
+                        user_input = input("Do you want to upload schedule to Google Calendar? y/n: ").lower()
+                        
+                        # Yes
+                        if user_input == "y":
+                            print("Uploading schedule to Google Calendar...")
+                            # If ok ... print "success!"
+                            break
+                        
+                        # No or Back
+                        elif user_input == "n" or user_input == "b":
+                            break
+                        
+                        elif user_input == "q":
+                            sys.exit("Quitting...")
+
+        # Set up non negotiable hours 
+        elif user_input == "4":
             print("4")
 
-        elif user_input == "b": # Back
+        # Back
+        elif user_input == "b":
             break
-        
+
         elif user_input == "q":
             sys.exit("Quitting...")
