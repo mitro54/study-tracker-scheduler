@@ -29,9 +29,11 @@ def scheduler():
 
                     while True:
                         user_input = input("Keep any data from previous schedule? y/n: ").lower()
+                        loop_checker = False
 
                         if user_input == "y": # Yes
                             print("Previous schedule gets printed here")
+                            loop_checker = True
 
                             while True:
                                 user_input = input("What to keep? Format: day/hourstart:minute, day/hourend:minute (write k when done): ")
@@ -43,24 +45,39 @@ def scheduler():
                         elif user_input == "n": # No
                             # Start generating schedule, will create separate functions for this task once main frame is done
                             print("Generating new schedule")
+                            loop_checker = True
                             break
 
-                        break
+                        elif user_input == "b": # Back
+                            break
+
+                        elif user_input == "q":
+                            sys.exit("Quitting...")
+                        
+                        # Break out of the loop if user has visited y or n
+                        if loop_checker:
+                            break
+
+                    # Break out of outer loop to get back to menu
                     break
 
                 # If input is not int, do not raise error
                 except ValueError:
+
                     if user_input == "b": # Back
                         break
+
                     elif user_input == "q":
                         sys.exit("Quitting...")
 
 
         elif user_input == "3": # Modify current schedule
-            print("3")
+            print("Current schedule gets printed here")
         elif user_input == "4": # Set up non negotiable hours
             print("4")
+
         elif user_input == "b": # Back
             break
+        
         elif user_input == "q":
             sys.exit("Quitting...")
