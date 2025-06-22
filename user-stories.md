@@ -54,21 +54,21 @@
                         -> y
                             *Program generates the previous schedule if there is one and then asks which data to keep, expecting numerical input in format day/hourstart, day/hourend , reprompts until user writes (k) Okay*
                         -> n
-                            *Program then starts generating a new schedule based on user input, starting from day 1. It presents full days two slots per hour as example "12.00 - 13.30: Open" or longer slots as "23.00 - 06.00: Sleep (Non negotiable)"*
-                            *Input is expected as "starthour.minute-endhour.minute: thing", once user is done with a day, user writes (k) Okay to repeat this process for each day until all days have been scheduled, or user writes (d) Done.*
+                            *Program then starts generating a new schedule based on user input, starting from day 1. It presents full days two slots per hour as example "12:00 - 13:30: Open" or longer slots as "23:00 - 06:00: Sleep (Non negotiable)"*
+                            *Input is expected as "starthour:minute-endhour:minute: thing", once user is done with a day, user writes (k) Okay to repeat this process for each day until all days have been scheduled, or user writes (d) Done.*
                             *Program also prints each time the newly updated schedule when user makes an addition to it*
 
         -> user selects 3 (Modify current schedule)
             *Program prints current schedule and then prompts which day to modify*
                 -> user input
-                    *Program prompts user that days schedule and expects modifications in format "starthour.minute-endhour.minute: thing", reprompts until user writes (d) Done*
+                    *Program prompts user that days schedule and expects modifications in format "starthour:minute-endhour:minute: thing", reprompts until user writes (d) Done*
         
         -> user selects 4 (Set up non negotiable hours)
             *Program prints current non negotiable hours (if there are any) and asks user if they want to (1) Add new hours or (2) Modify current hours (If any exist)*
                 -> user selects 1 (Add new hours)
                     *input is expected as "starthour.minute-endhour.minute: thing", program goes back to previous prompt after*
                 -> user selects 2 (Modify current hours, if any exist)
-                    *Program asks user which hours to modify, input is expected as "starthour.minute-endhour.minute: thing", reprompts until user writes (d) Done, goes back to previous prompt*
+                    *Program asks user which hours to modify, input is expected as "starthour:minute-endhour:minute: thing", reprompts until user writes (d) Done, goes back to previous prompt*
 
 
     -> user selects tracking

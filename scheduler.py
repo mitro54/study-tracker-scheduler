@@ -34,7 +34,7 @@ def scheduler():
                             print("Previous schedule gets printed here")
 
                             while True:
-                                user_input = input("What to keep? Format: day/hourstart, day/hourend (write k when done): ")
+                                user_input = input("What to keep? Format: day/hourstart:minute, day/hourend:minute (write k when done): ")
 
                                 if user_input == "k":
                                     # Then erase everything else from the JSON file and start generating new schedule, will create separate functions for this task
