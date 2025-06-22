@@ -4,22 +4,22 @@ def scheduler():
     while True:
         user_input = input("(1) See current schedule, (2) Create new schedule, (3) Modify current schedule or (4) Set up non negotiable hours: ").lower()
 
-        if user_input == "1":
+        if user_input == "1": # See current schedule
             while True:
                 print("Full schedule prints here")
                 user_input = input("Do you want to upload schedule to Google Calendar? y/n: ").lower()
 
-                if user_input == "y":
+                if user_input == "y": # Yes
                     print("Uploading schedule to Google Calendar...")
                     # If ok ... print "success!"
                     break
 
-                elif user_input == "n" or user_input == "b":
+                elif user_input == "n" or user_input == "b": # No or Back
                     break
                 elif user_input == "q":
                     sys.exit("Quitting...")
 
-        elif user_input == "2":
+        elif user_input == "2": # Create new schedule
             while True:
                 user_input = input("Please provide your new schedule a length in days: ").lower()
 
@@ -30,17 +30,17 @@ def scheduler():
                     while True:
                         user_input = input("Keep any data from previous schedule? y/n: ").lower()
 
-                        if user_input == "y":
+                        if user_input == "y": # Yes
                             print("Previous schedule gets printed here")
 
                             while True:
                                 user_input = input("What to keep? Format: day/hourstart:minute, day/hourend:minute (write k when done): ")
 
-                                if user_input == "k":
+                                if user_input == "k": # Okay
                                     # Then erase everything else from the JSON file and start generating new schedule, will create separate functions for this task
                                     break
 
-                        elif user_input == "n":
+                        elif user_input == "n": # No
                             # Start generating schedule, will create separate functions for this task once main frame is done
                             print("Generating new schedule")
                             break
@@ -50,17 +50,17 @@ def scheduler():
 
                 # If input is not int, do not raise error
                 except ValueError:
-                    if user_input == "b":
+                    if user_input == "b": # Back
                         break
                     elif user_input == "q":
                         sys.exit("Quitting...")
 
 
-        elif user_input == "3":
+        elif user_input == "3": # Modify current schedule
             print("3")
-        elif user_input == "4":
+        elif user_input == "4": # Set up non negotiable hours
             print("4")
-        elif user_input == "b":
+        elif user_input == "b": # Back
             break
         elif user_input == "q":
             sys.exit("Quitting...")
