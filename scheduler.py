@@ -129,7 +129,50 @@ def scheduler():
 
         # Set up non negotiable hours 
         elif user_input == "4":
-            print("4")
+            while True:
+                print("Prints non negotiable hours if any exist here")
+                user_input = input("Do you want to (1) Add new hours or (2) Modify current hours: ").lower()
+
+                # Add new hours
+                if user_input == "1":
+                    while True:
+                        user_input = input("Add non negotiable hours, in following format: 00:00-01:00: example , (d) when Done: ").lower()
+
+                        # If user_input passes regex, prepare it for the dictionary and then push it to dictionary                     
+                        # input_holder.update(user_input)
+                        
+                        # After user is done, push the input_holders data to JSON, clear input_holder
+
+                        if user_input == "b" or user_input == "d":
+                            input_holder = {}
+                            break
+
+                        elif user_input == "q":
+                            sys.exit("Quitting...")
+                        
+                # Modify current hours
+                elif user_input == "2":
+                    while True:
+                        user_input = input("Modify non negotiable hours, in following format: 00:00-01:00: example , (d) when Done: ").lower()
+
+                        # If user_input passes regex, prepare it for the dictionary and then push it to dictionary                     
+                        # input_holder.update(user_input)
+                        
+                        # After user is done, push the input_holders data to JSON, clear input_holder
+                        
+                        if user_input == "b" or user_input == "d":
+                            input_holder = {}
+                            break
+
+                        elif user_input == "q":
+                            sys.exit("Quitting...")
+
+                # Back
+                if user_input == "b":
+                    break
+
+                elif user_input == "q":
+                    sys.exit("Quitting...")
 
         # Back
         elif user_input == "b":

@@ -66,7 +66,7 @@
         -> user selects 4 (Set up non negotiable hours)
             *Program prints current non negotiable hours (if there are any) and asks user if they want to (1) Add new hours or (2) Modify current hours (If any exist)*
                 -> user selects 1 (Add new hours)
-                    *input is expected as "starthour.minute-endhour.minute: thing", program goes back to previous prompt after*
+                    *input is expected as "starthour:minute-endhour:minute: thing", program goes back to previous prompt after*
                 -> user selects 2 (Modify current hours, if any exist)
                     *Program asks user which hours to modify, input is expected as "starthour:minute-endhour:minute: thing", reprompts until user writes (d) Done, goes back to previous prompt*
 
