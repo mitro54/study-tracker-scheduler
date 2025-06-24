@@ -1,16 +1,17 @@
 import sys
+import helpers
 
 def tracker():
     while True:
-        print("Current progress: example")
+        helpers.printer("tracker.json")
         while True:
-            user_input = input("Do you want to update your progress? y/n: ").lower()
+            user_input = input("Do you want to add new topics or update your progress? y/n: ").lower()
 
             # Yes
             if user_input == "y":
                 while True:
-                    print("Current topics")
-                    user_input = input("Do you want to (1) Add new topics or (2) Update current topics?: ").lower()
+                    helpers.printer("tracker.json")
+                    user_input = input("Do you want to (1) Add new topics or (2) Update current progress?: ").lower()
 
                     # Add new topics
                     if user_input == "1":
