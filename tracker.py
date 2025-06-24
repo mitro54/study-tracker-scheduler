@@ -4,6 +4,7 @@ import helpers
 def tracker():
     while True:
         helpers.printer("tracker.json")
+
         while True:
             user_input = input("Do you want to add new topics or update your progress? y/n: ").lower()
 
@@ -15,11 +16,21 @@ def tracker():
 
                     # Add new topics
                     if user_input == "1":
+                        temp_storage = []
                         while True:
                             user_input = input("Please input a topic, (d) when Done: ")
 
-                            if user_input == "d" or user_input == "b":
+                            if user_input == "d":
+                                helpers.add_to_json("tracker.json", temp_storage)
+                                temp_storage = []
                                 break
+
+                            elif user_input == "b":
+                                temp_storage = []
+                                break
+
+                            temp_storage.append(user_input)
+
                     
                     # Update current topics
                     elif user_input == "2":
