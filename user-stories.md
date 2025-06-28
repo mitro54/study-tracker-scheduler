@@ -72,7 +72,7 @@
 
 
     -> user selects tracking
-        *program generates current tracking information for each topic, then prompts if user wants to update information y/n*
+        *program generates current tracking information for each topic, then prompts if user wants to update information (1) y / (2) n*
         -> y
             *program then prompts user if they want to (1) Add new topics or (2) Update current topics*
                 -> user selects 1 (Add new topics)

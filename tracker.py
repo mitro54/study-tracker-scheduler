@@ -6,10 +6,10 @@ def tracker():
         helpers.printer("tracker.json")
 
         while True:
-            user_input = input("Do you want to add new topics or update your progress? y/n: ").lower()
+            user_input = input("Do you want to add new topics or update your progress? (1) y / (2) n : ").lower()
 
             # Yes
-            if user_input == "y":
+            if user_input == "1":
                 while True:
                     helpers.printer("tracker.json")
                     user_input = input("Do you want to (1) Add new topics or (2) Update current progress?: ").lower()
@@ -48,7 +48,7 @@ def tracker():
                         sys.exit("Quitting...")              
             
             # No or Back
-            elif user_input == "n" or user_input == "b":
+            elif user_input == "2" or user_input == "b":
                 break
             elif user_input == "q":
                 sys.exit("Quitting...")
