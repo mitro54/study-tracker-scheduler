@@ -45,13 +45,16 @@ def update_tracker_progress(filename: str, user_input: str):
         
          # If file is empty        
         if storage.tell() == 0:
-            return print("Nothing to update. Add new topics first.")
+            print("There is nothing to update. Add new topics first.")
         
         # If file is not empty
         else:
             storage.seek(0)
             existing_data = json.load(storage)
-            for obj in storage:
-                print(storage[obj][0])
-                if storage[obj][0] == user_input:
-                    found_user_input = input(f"Selected {user_input}, update it: ")
+
+            # Test if user_input matches any key in the list of dictionaries
+            if any(obj.get(user_input) for obj in existing_data):
+                found_user_input = input(f"Selected {user_input}, update it: ")
+                # Then update the keys value
+            else:
+                print(f"Could not find a key: {user_input}")

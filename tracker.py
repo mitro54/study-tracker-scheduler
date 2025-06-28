@@ -34,8 +34,8 @@ def tracker():
                     
                     # Update current topics
                     elif user_input == "2":
+                        helpers.printer("tracker.json")
                         while True:
-                            helpers.printer("tracker.json")
                             user_input = input("Please select a topic to update: ")
                             if user_input == "" or user_input == "b":
                                 break
