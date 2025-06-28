@@ -21,7 +21,7 @@ def tracker():
                             user_input = input("Please input a topic, (d) when Done: ")
 
                             if user_input == "d":
-                                helpers.add_to_json("tracker.json", temp_storage)
+                                helpers.add_to_tracker_json("tracker.json", temp_storage)
                                 temp_storage = []
                                 break
 
