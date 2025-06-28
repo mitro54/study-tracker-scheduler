@@ -72,8 +72,8 @@
 
 
     -> user selects tracking
-        *program generates current tracking information for each topic, then prompts if user wants to update information (1) y / (2) n*
-        -> y
+        *program generates current tracking information for each topic, then prompts if user wants to update information (1) yes / (2) no*
+        -> yes
             *program then prompts user if they want to (1) Add new topics or (2) Update current topics*
                 -> user selects 1 (Add new topics)
                     *program then expects user to input a new topic, saves it to json file, prompts again until user writes (d) Done*
@@ -81,6 +81,6 @@
                     *program asks which topic to update*
                         -> user input
                             *program then modifies the topic and goes back to previous prompt*
-        -> n
+        -> no
             *Program then goes back to the first prompt*
 ```

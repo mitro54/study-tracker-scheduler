@@ -6,7 +6,7 @@ def tracker():
         helpers.printer("tracker.json")
 
         while True:
-            user_input = input("Do you want to add new topics or update your progress? (1) y / (2) n : ").lower()
+            user_input = input("Do you want to add new topics or update your progress? (1) Yes / (2) No: ").lower()
 
             # Yes
             if user_input == "1":
@@ -35,12 +35,11 @@ def tracker():
                     # Update current topics
                     elif user_input == "2":
                         while True:
-                            print("Topics goes here")
+                            helpers.printer("tracker.json")
                             user_input = input("Please select a topic to update: ")
                             if user_input == "" or user_input == "b":
                                 break
-                            # if found, keep going
-                            found_user_input = input(f"Selected {user_input}, update it: ")
+                            helpers.update_tracker_progress("tracker.json", user_input)
                             
                     elif user_input == "b":
                         break

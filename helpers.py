@@ -38,3 +38,20 @@ def add_to_tracker_json(filename: str, temp_list: list):
             storage.seek(0)
             storage.truncate()
             json.dump(existing_data, storage)
+
+def update_tracker_progress(filename: str, user_input: str):
+    with open(f"{filename}", "r+") as storage:
+        storage.seek(0,2)
+        
+         # If file is empty        
+        if storage.tell() == 0:
+            return print("Nothing to update. Add new topics first.")
+        
+        # If file is not empty
+        else:
+            storage.seek(0)
+            existing_data = json.load(storage)
+            for obj in storage:
+                print(storage[obj][0])
+                if storage[obj][0] == user_input:
+                    found_user_input = input(f"Selected {user_input}, update it: ")
