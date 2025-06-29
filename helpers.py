@@ -1,7 +1,8 @@
 # All helper functions go here
 import json
+import sys
 
-def printer(filename: str):
+def tracking_printer(filename: str):
     with open(f"{filename}", "a+") as storage:
 
         storage.seek(0,2)
@@ -54,7 +55,24 @@ def update_tracker_progress(filename: str, user_input: str):
 
             # Test if user_input matches any key in the list of dictionaries
             if any(obj.get(user_input) for obj in existing_data):
+
                 found_user_input = input(f"Selected {user_input}, update it: ")
-                # Then update the keys value
+
+                if found_user_input == "b" or found_user_input == "":
+                    return
+                
+                elif found_user_input == "q":
+                    print("Quitting...")
+                    sys.exit()
+
+                # Find the match, update values
+                for obj in existing_data:
+                    if user_input in obj:
+                        obj.update({user_input: found_user_input})
+                
+                storage.seek(0)
+                storage.truncate()     
+                json.dump(existing_data, storage)
+
             else:
                 print(f"Could not find a key: {user_input}")
