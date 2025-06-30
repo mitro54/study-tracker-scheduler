@@ -25,18 +25,18 @@ def scheduler():
         # Create new schedule
         elif user_input == "2":
             while True:
-                user_input = input("Please provide your new schedule a length in days: ").lower()
+                length_input = input("Please provide your new schedule a length in days: ").lower()
 
                 # Testing if input is int
                 try:
-                    int(user_input)
+                    int(length_input)
 
                     while True:
-                        user_input = input("Keep any data from previous schedule? y/n: ").lower()
+                        keepdata_input = input("Keep any data from previous schedule? y/n: ").lower()
                         loop_checker = False
-
+ 
                         # Yes
-                        if user_input == "y":
+                        if keepdata_input == "y":
                             print("Previous schedule gets printed here")
                             loop_checker = True
 
@@ -49,17 +49,17 @@ def scheduler():
                                     break
                         
                         # No
-                        elif user_input == "n":
+                        elif keepdata_input == "n":
                             # Start generating schedule, will create separate functions for this task once main frame is done
                             print("Generating new schedule")
                             loop_checker = True
                             break
                         
                         # Back
-                        elif user_input == "b":
+                        elif keepdata_input == "b":
                             break
 
-                        elif user_input == "q":
+                        elif keepdata_input == "q":
                             sys.exit("Quitting...")
                         
                         # Break out of the loop if user has visited y or n
