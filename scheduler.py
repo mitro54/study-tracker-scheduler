@@ -1,4 +1,5 @@
 import sys
+import helpers
 
 def scheduler():
     while True:
@@ -39,19 +40,33 @@ def scheduler():
                         if keepdata_input == "y":
                             print("Previous schedule gets printed here")
                             loop_checker = True
+                            keep_list = []
 
                             while True:
                                 user_input = input("What to keep? Format: day/hourstart:minute, day/hourend:minute (write k when done): ")
+                                # Regex to check the format, change it from str to tuple
 
                                 # Okay
                                 if user_input == "k":
-                                    # Then erase everything else from the JSON file and start generating new schedule, will create separate functions for this task
+                                    # Then erase everything else from the JSON file and start generating new schedule
+                                    helpers.scheduler("scheduler.json", length_input, keepdata_input, keep_list)
+                                    keep_list = []
                                     break
-                        
+                                
+                                elif user_input == "b":
+                                    break
+
+                                elif user_input == "q":
+                                    sys.exit("Quitting...")
+
+                                # Append the tuple to keep list
+                                keep_list.append(user_input)
+
                         # No
                         elif keepdata_input == "n":
-                            # Start generating schedule, will create separate functions for this task once main frame is done
+                            # Start generating schedule
                             print("Generating new schedule")
+                            helpers.scheduler("scheduler.json", length_input, keepdata_input, keep_list)
                             loop_checker = True
                             break
                         
