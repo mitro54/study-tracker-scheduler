@@ -85,7 +85,7 @@ def scheduler(filename: str, length_input: str, keepdata_input: str, keep_list =
     # If file is empty        
     if storage.tell() == 0:
         for idx in keep_list:
-            tuple_list.append(({idx: "0"}))
+            tuple_list.append((idx[0], idx[1]))
 
         json.dump(tuple_list, storage)
     
@@ -96,9 +96,9 @@ def scheduler(filename: str, length_input: str, keepdata_input: str, keep_list =
     
         # everything still in progress
         for idx in keep_list:
-            existing_data.append({idx: "0"})
+            tuple_list.append((idx[0], idx[1]))
 
         storage.seek(0)
         storage.truncate()
-        json.dump(existing_data, storage)
+        json.dump(tuple_list, storage)
 
