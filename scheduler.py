@@ -1,5 +1,6 @@
 import sys
 import helpers
+import re
 
 def scheduler():
     while True:
@@ -59,8 +60,17 @@ def scheduler():
                                 elif user_input == "q":
                                     sys.exit("Quitting...")
 
-                                # Append the tuple to keep list
-                                keep_list.append(user_input)
+                                # Check if input matches format "day/hourstart:minute, day/hourend:minute"
+                                if re.search(r"^(0[1-9]|[12][0-9]|3[01])/([01][0-9]|2[0-3]):([0-5][0-9]),\s?(0[1-9]|[12][0-9]|3[01])/([01][0-9]|2[0-3]):([0-5][0-9])$", user_input):
+                                    
+                                    result_list = user_input.strip().split(",")
+
+                                    # Append the result_list as tuple
+                                    keep_list.append(tuple(result_list))
+                                    print(keep_list)
+
+                                else:
+                                    print("Check your formatting and try again.")
 
                         # No
                         elif keepdata_input == "n":

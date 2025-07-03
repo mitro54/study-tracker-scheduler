@@ -77,28 +77,30 @@ def update_tracker_progress(filename: str, user_input: str):
             else:
                 print(f"Could not find a key: {user_input}")
 
-def scheduler(filename: str, length_input: str, keepdata_input: str, keep_list = None):
-    tuple_list = []
+def scheduler(filename: str, length_input: str, keepdata_input: str, keep_list: list):
+    tuple_list = []   
     with open(f"{filename}", "r+") as storage:
         storage.seek(0,2)
 
-    # If file is empty        
-    if storage.tell() == 0:
-        for idx in keep_list:
-            tuple_list.append((idx[0], idx[1]))
+        # If file is empty        
+        if storage.tell() == 0:
+            for idx in keep_list:
+                # Testing if appends, keep_list should not append to json file
+                tuple_list.append((idx[0], idx[1]))
 
-        json.dump(tuple_list, storage)
-    
-    # If file is not empty
-    else:
-        storage.seek(0)
-        existing_data = json.load(storage)
-    
-        # everything still in progress
-        for idx in keep_list:
-            tuple_list.append((idx[0], idx[1]))
+            json.dump(tuple_list, storage)
+        
+        # If file is not empty
+        else:
+            storage.seek(0)
+            existing_data = json.load(storage)
+        
+            # everything still in progress
+            for idx in keep_list:
+                # Testing if appends, keep_list should not append to json file
+                tuple_list.append((idx[0], idx[1]))
 
-        storage.seek(0)
-        storage.truncate()
-        json.dump(tuple_list, storage)
+            storage.seek(0)
+            storage.truncate()
+            json.dump(tuple_list, storage)
 

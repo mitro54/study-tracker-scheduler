@@ -52,7 +52,7 @@
                 -> user input
                     *Program presents a choice to keep any data from previous schedule y/n*
                         -> y
-                            *Program generates the previous schedule if there is one and then asks which data to keep, expecting numerical input in format day/hourstart, day/hourend , reprompts until user writes (k) Okay*
+                            *Program generates the previous schedule if there is one and then asks which data to keep, expecting numerical input in format day/hourstart:minute, day/hourend:minute , reprompts until user writes (k) Okay*
                         -> n
                             *Program then starts generating a new schedule based on user input, starting from day 1. It presents full days two slots per hour as example "12:00 - 13:30: Open" or longer slots as "23:00 - 06:00: Sleep (Non negotiable)"*
                             *Input is expected as "starthour:minute-endhour:minute: thing", once user is done with a day, user writes (k) Okay to repeat this process for each day until all days have been scheduled, or user writes (d) Done.*
