@@ -77,7 +77,7 @@ def update_tracker_progress(filename: str, user_input: str):
             else:
                 print(f"Could not find a key: {user_input}")
 
-def scheduler(filename: str, length_input: str, keepdata_input: str, keep_list: list):
+def scheduler(filename: str, length_input: str, keepdata_input: str, keep_list: None):
     tuple_list = []   
     with open(f"{filename}", "r+") as storage:
         storage.seek(0,2)
