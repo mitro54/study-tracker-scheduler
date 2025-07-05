@@ -101,14 +101,16 @@ def scheduler(filename: str, length_input: int, keepdata_input: str, keep_list: 
             print("(k) Okay to move to next day, (d) Done to save the current schedule to JSON file. Input format example: 00:00-00:30, reading a book")
             print(f"Currently on day: {i + 1}")
             user_input = input(f"Expecting user input: ")
-            # Regex to check user input, then 
+            # Regex to check user input format
+
+            # if regex ok, find the selected start and end times, add the input to the selected slots, then print current version of day, continue
 
             if user_input == "k":
             # then append the day to temp_list
                 continue
 
             elif user_input == "d":
-            # push current temp_list to scheduler.json
+            # push current temp_list to scheduler.json, move on to next day
                 break
             
             elif user_input == 'b':
