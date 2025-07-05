@@ -45,7 +45,6 @@ def scheduler():
 
                             while True:
                                 user_input = input("What to keep? Format: day/hourstart:minute, day/hourend:minute (write k when done): ")
-                                # Regex to check the format, change it from str to tuple
 
                                 # Okay
                                 if user_input == "k":
@@ -67,6 +66,7 @@ def scheduler():
 
                                     # Append the result_list as tuple
                                     keep_list.append(tuple(result_list))
+                                    # Debug, remove later
                                     print(keep_list)
 
                                 else:
@@ -76,7 +76,7 @@ def scheduler():
                         elif keepdata_input == "n":
                             # Start generating schedule
                             print("Generating new schedule")
-                            helpers.scheduler("scheduler.json", length_input, keepdata_input, keep_list)
+                            helpers.scheduler("scheduler.json", length_input, keepdata_input)
                             loop_checker = True
                             break
                         
