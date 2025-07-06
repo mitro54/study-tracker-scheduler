@@ -87,11 +87,9 @@ def update_tracker_progress(filename: str, user_input: str):
                 print(f"Could not find a key: {user_input}")
 
 def scheduler(filename: str, length_input: int, keepdata_input: str, keep_list: list | None = None):
-    tuple_list = []
     # Create a temp list that will store each day, each day is a separate dictionary that has pre generated 48 empty slots for the full day, it should print each 30 min slot on a new line, 00:00 - 23:30
+    # Note for later, can add another list here if user wants to add something to all days instead of just one.
     temp_list = []
-    day = generate_empty_day()
-    print(day)
 
     for i in range(0, int(length_input)):
         # a function call here to generate the dictionary
@@ -102,28 +100,36 @@ def scheduler(filename: str, length_input: int, keepdata_input: str, keep_list: 
             print("(k) Okay to move to next day, (d) Done to save the current schedule to JSON file. Input format example: 00:00-00:30, reading a book")
             print(f"Currently on day: {i + 1}")
             user_input = input(f"Expecting user input: ")
-            # Regex to check user input format
 
             # Check if input matches format "starthour:minute-endhour:minute, task
-            if re.search(r"^([01][0-9]|2[0-3]):([0-5][0-9])-([01][0-9]|2[0-3]):([0-5][0-9]),", user_input):
-                continue
+            if re.search(r"^([01][0-9]|2[0-3]):([0-5][0-9])-([01][0-9]|2[0-3]):([0-5][0-9]), ", user_input):
 
-                # then split string in to 3 parts, start time, end time and task
+                # split string in to 3 parts, start_time, end_time, task
+                time_range, task = user_input.split(",", 1)
+                start_time, end_time = time_range.strip().split("-", 1)
 
-                # then find start time and endtime from the days dictionary, add them there
+                # create new dictionary with times from start_time to end_time, add task to them
+                in_range = {
+                    time: task
+                    for time, task in day.items()
+                    if start_time <= time <= end_time
+                }
 
-            else:
-                print("Check your formatting and try again.")
-
-            # if regex ok, find the selected start and end times, add the input to the selected slots, then print current version of day, continue
-
-            if user_input == "k":
-            # then append the day to temp_list
-                continue
+                # iterate over in_range, update key value pairs to match it in day dictionary
+                for key in in_range:
+                    day[key] = task
+                
+                # print current full schedule
+                for key in day:
+                    print(f"{key}:{day.get(key)}")
 
             elif user_input == "d":
             # push current temp_list to scheduler.json, move on to next day
                 break
+    
+            elif user_input == "k":
+            # then append the day to temp_list
+                continue
             
             elif user_input == 'b':
                 break
@@ -131,7 +137,8 @@ def scheduler(filename: str, length_input: int, keepdata_input: str, keep_list: 
             elif user_input == 'q':
                 sys.exit()
 
-
+            else:
+                print("Check your formatting and try again.")
 
     with open(f"{filename}", "r+") as storage:
         storage.seek(0,2)
