@@ -1,6 +1,7 @@
 # All helper functions go here
 import json
 import sys
+import re
 
 def generate_empty_day():
     # generate a dictionary with 48 keys with empty values
@@ -102,6 +103,17 @@ def scheduler(filename: str, length_input: int, keepdata_input: str, keep_list: 
             print(f"Currently on day: {i + 1}")
             user_input = input(f"Expecting user input: ")
             # Regex to check user input format
+
+            # Check if input matches format "starthour:minute-endhour:minute, task
+            if re.search(r"^([01][0-9]|2[0-3]):([0-5][0-9])-([01][0-9]|2[0-3]):([0-5][0-9]),", user_input):
+                continue
+
+                # then split string in to 3 parts, start time, end time and task
+
+                # then find start time and endtime from the days dictionary, add them there
+
+            else:
+                print("Check your formatting and try again.")
 
             # if regex ok, find the selected start and end times, add the input to the selected slots, then print current version of day, continue
 

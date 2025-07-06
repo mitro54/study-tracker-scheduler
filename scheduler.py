@@ -66,8 +66,6 @@ def scheduler():
 
                                     # Append the result_list as tuple
                                     keep_list.append(tuple(result_list))
-                                    # Debug, remove later
-                                    print(keep_list)
 
                                 else:
                                     print("Check your formatting and try again.")
