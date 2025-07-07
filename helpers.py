@@ -124,12 +124,14 @@ def scheduler(filename: str, length_input: int, keepdata_input: str, keep_list: 
                     print(f"{key}:{day.get(key)}")
 
             elif user_input == "d":
-            # push current temp_list to scheduler.json, move on to next day
+            # push current temp_list to scheduler.json
+                json.dump(temp_list, storage)
                 break
     
             elif user_input == "k":
-            # then append the day to temp_list
-                continue
+            # then append the day to temp_list, move on to next day
+                temp_list.append(day)
+                break
             
             elif user_input == 'b':
                 break
