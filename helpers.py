@@ -124,9 +124,8 @@ def scheduler(filename: str, length_input: int, keepdata_input: str, keep_list: 
                     print(f"{key}:{day.get(key)}")
 
             elif user_input == "d":
-            # push current temp_list to scheduler.json
-                json.dump(temp_list, storage)
-                break
+                print(temp_list)
+                return temp_list
     
             elif user_input == "k":
             # then append the day to temp_list, move on to next day
@@ -142,28 +141,23 @@ def scheduler(filename: str, length_input: int, keepdata_input: str, keep_list: 
             else:
                 print("Check your formatting and try again.")
 
-    with open(f"{filename}", "r+") as storage:
+def scheduler_write(temp_list):
+    with open(f"scheduler.json", "r+") as storage:
         storage.seek(0,2)
 
         # If file is empty        
         if storage.tell() == 0:
-            for idx in keep_list:
-                # Testing if appends, keep_list should not append to json file
-                tuple_list.append((idx[0], idx[1]))
 
-            json.dump(tuple_list, storage)
+            json.dump(temp_list, storage)
         
         # If file is not empty
         else:
             storage.seek(0)
             existing_data = json.load(storage)
         
-            # everything still in progress
-            for idx in keep_list:
-                # Testing if appends, keep_list should not append to json file
-                tuple_list.append((idx[0], idx[1]))
+            # Implement logic to save data that is wanted to be kept
 
             storage.seek(0)
             storage.truncate()
-            json.dump(tuple_list, storage)
+            json.dump(temp_list, storage)
 
