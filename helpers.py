@@ -99,7 +99,7 @@ def scheduler(filename: str, length_input: int, keepdata_input: str, keep_list: 
         while True:
             print("(k) Okay to move to next day, (d) Done to save the current schedule to JSON file. Input format example: 00:00-00:30, reading a book")
             print(f"Currently on day: {i + 1}")
-            user_input = input(f"Expecting user input: ")
+            user_input = input(f"Expecting user input (hh:mm-hh:mm, task): ")
 
             # Check if input matches format "starthour:minute-endhour:minute, task
             if re.search(r"^([01][0-9]|2[0-3]):([0-5][0-9])-([01][0-9]|2[0-3]):([0-5][0-9]), ", user_input):
@@ -124,8 +124,7 @@ def scheduler(filename: str, length_input: int, keepdata_input: str, keep_list: 
                     print(f"{key}:{day.get(key)}")
 
             elif user_input == "d":
-                print(temp_list)
-                return temp_list
+                return temp_list, keep_list
     
             elif user_input == "k":
             # then append the day to temp_list, move on to next day
@@ -154,9 +153,11 @@ def scheduler_write(temp_list):
         else:
             storage.seek(0)
             existing_data = json.load(storage)
+            print(existing_data)
         
-            # Implement logic to save data that is wanted to be kept
+            # Also implement logic to save data from the original file that is wanted to be kept
 
+            # Currently the next part only deletes the old data and inserts new
             storage.seek(0)
             storage.truncate()
             json.dump(temp_list, storage)
