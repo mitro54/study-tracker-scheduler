@@ -49,7 +49,7 @@ def scheduler():
                                 # Okay
                                 if user_input == "k":
                                     # Then erase everything else from the JSON file and start generating new schedule
-                                    helpers.scheduler_write(helpers.scheduler("scheduler.json", length_input, keepdata_input, keep_list))
+                                    helpers.scheduler_write(helpers.scheduler(length_input, keepdata_input, keep_list))
                                     keep_list = []
                                     break
                                 
@@ -74,7 +74,7 @@ def scheduler():
                         elif keepdata_input == "n":
                             # Start generating schedule
                             print("Generating new schedule")
-                            helpers.scheduler_write(helpers.scheduler("scheduler.json", length_input, keepdata_input))
+                            helpers.scheduler_write(helpers.scheduler(length_input, keepdata_input))
                             loop_checker = True
                             break
                         

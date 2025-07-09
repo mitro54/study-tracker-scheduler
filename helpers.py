@@ -86,7 +86,7 @@ def update_tracker_progress(filename: str, user_input: str):
             else:
                 print(f"Could not find a key: {user_input}")
 
-def scheduler(filename: str, length_input: int, keepdata_input: str, keep_list: list | None = None):
+def scheduler(length_input: int, keepdata_input: str, keep_list: list | None = None):
     # Create a temp list that will store each day, each day is a separate dictionary that has pre generated 48 empty slots for the full day, it should print each 30 min slot on a new line, 00:00 - 23:30
     # Note for later, can add another list here if user wants to add something to all days instead of just one.
     temp_list = []
@@ -129,6 +129,11 @@ def scheduler(filename: str, length_input: int, keepdata_input: str, keep_list: 
             elif user_input == "k":
             # then append the day to temp_list, move on to next day
                 temp_list.append(day)
+
+                # If loop is finished and user didnt input done
+                if i + 1 == int(length_input):
+                    print("This was the last day, adding schedule automatically to schedule.json...")
+                    return temp_list, keep_list
                 break
             
             elif user_input == 'b':
