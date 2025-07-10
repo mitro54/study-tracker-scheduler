@@ -145,7 +145,7 @@ def scheduler(length_input: int, keepdata_input: str, keep_list: list | None = N
             else:
                 print("Check your formatting and try again.")
 
-def scheduler_write(temp_list):
+def scheduler_write(temp_list, keep_list):
     with open(f"scheduler.json", "r+") as storage:
         storage.seek(0,2)
 
@@ -161,7 +161,9 @@ def scheduler_write(temp_list):
             print(existing_data)
         
             # Also implement logic to save data from the original file that is wanted to be kept
-
+            if keep_list:
+                for key, value in keep_list:
+                    print(key, value)
             # Currently the next part only deletes the old data and inserts new
             storage.seek(0)
             storage.truncate()

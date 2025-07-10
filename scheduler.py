@@ -43,6 +43,8 @@ def scheduler():
                             loop_checker = True
                             keep_list = []
 
+                            # this approach seems unmaintainable, make it a function instead and call it here
+                            # keepdata_input should be passed but move keep_list and the while loop inside a new function
                             while True:
                                 user_input = input("What to keep? Format: day/hourstart:minute, day/hourend:minute (write k when done): ")
 
