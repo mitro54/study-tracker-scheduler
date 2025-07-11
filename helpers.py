@@ -169,3 +169,31 @@ def scheduler_write(temp_list, keep_list):
             storage.truncate()
             json.dump(temp_list, storage)
 
+def schedule_loop(keepdata_input):
+    while True:
+        user_input = input("What to keep? Format: day/hourstart:minute, day/hourend:minute (write k when done): ")
+
+        # Okay
+        if user_input == "k":
+            # Then erase everything else from the JSON file and start generating new schedule
+            scheduler_write(scheduler(length_input, keepdata_input, keep_list))
+            keep_list = []
+            break
+        
+        elif user_input == "b":
+            break
+
+        elif user_input == "q":
+            sys.exit("Quitting...")
+
+        # Check if input matches format "day/hourstart:minute, day/hourend:minute"
+        if re.search(r"^(0[1-9]|[12][0-9]|3[01])/([01][0-9]|2[0-3]):([0-5][0-9]),\s?(0[1-9]|[12][0-9]|3[01])/([01][0-9]|2[0-3]):([0-5][0-9])$", user_input):
+            
+            result_list = user_input.strip().split(",")
+
+        # Append the result_list as tuple
+        keep_list.append(tuple(result_list))
+
+    else:
+        print("Check your formatting and try again.")
+
