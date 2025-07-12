@@ -86,7 +86,7 @@ def update_tracker_progress(filename: str, user_input: str):
             else:
                 print(f"Could not find a key: {user_input}")
 
-def scheduler(length_input: int, keepdata_input: str, keep_list: list | None = None):
+def scheduler(length_input: int, keepdata_input: str):
     # Create a temp list that will store each day, each day is a separate dictionary that has pre generated 48 empty slots for the full day, it should print each 30 min slot on a new line, 00:00 - 23:30
     # Note for later, can add another list here if user wants to add something to all days instead of just one.
     temp_list = []
@@ -124,7 +124,7 @@ def scheduler(length_input: int, keepdata_input: str, keep_list: list | None = N
                     print(f"{key}:{day.get(key)}")
 
             elif user_input == "d":
-                return temp_list, keep_list
+                return temp_list
     
             elif user_input == "k":
             # then append the day to temp_list, move on to next day
@@ -133,7 +133,7 @@ def scheduler(length_input: int, keepdata_input: str, keep_list: list | None = N
                 # If loop is finished and user didnt input done
                 if i + 1 == int(length_input):
                     print("This was the last day, adding schedule automatically to schedule.json...")
-                    return temp_list, keep_list
+                    return temp_list
                 break
             
             elif user_input == 'b':
@@ -169,19 +169,20 @@ def scheduler_write(temp_list, keep_list):
             storage.truncate()
             json.dump(temp_list, storage)
 
-def schedule_loop(keepdata_input):
+def schedule_loop(length_input, keepdata_input):
+    keep_list = []
     while True:
         user_input = input("What to keep? Format: day/hourstart:minute, day/hourend:minute (write k when done): ")
 
         # Okay
         if user_input == "k":
             # Then erase everything else from the JSON file and start generating new schedule
-            scheduler_write(scheduler(length_input, keepdata_input, keep_list))
-            keep_list = []
-            break
+            scheduler_write(scheduler(length_input, keepdata_input, keep_list), keep_list)
+            return "k"
+
         
         elif user_input == "b":
-            break
+            return "b"
 
         elif user_input == "q":
             sys.exit("Quitting...")
@@ -191,9 +192,8 @@ def schedule_loop(keepdata_input):
             
             result_list = user_input.strip().split(",")
 
-        # Append the result_list as tuple
-        keep_list.append(tuple(result_list))
+            # Append the result_list as tuple
+            keep_list.append(tuple(result_list))
 
-    else:
-        print("Check your formatting and try again.")
-
+        else:
+            print("Check your formatting and try again.")
