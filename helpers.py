@@ -145,13 +145,12 @@ def scheduler(length_input: int, keepdata_input: str):
             else:
                 print("Check your formatting and try again.")
 
-def scheduler_write(temp_list, keep_list):
+def scheduler_write(temp_list: list, keep_list: list = None):
     with open(f"scheduler.json", "r+") as storage:
         storage.seek(0,2)
 
         # If file is empty        
         if storage.tell() == 0:
-
             json.dump(temp_list, storage)
         
         # If file is not empty
@@ -177,7 +176,7 @@ def schedule_loop(length_input, keepdata_input):
         # Okay
         if user_input == "k":
             # Then erase everything else from the JSON file and start generating new schedule
-            scheduler_write(scheduler(length_input, keepdata_input, keep_list), keep_list)
+            scheduler_write(scheduler(length_input, keepdata_input), keep_list)
             return "k"
 
         
