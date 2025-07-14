@@ -15,7 +15,6 @@
 - AS an user i want the program to be able to go backwards in prompting if needed
 - AS an user i want the program to save to a json file instead of a database
 
-
 #### OPTIONAL (IF you have spare time AND really feel like this is necessary after everything functions)
 - AS an user i want to be questioned about the topic on hand by an AI
 - AS an user i want to keep studying about the topic on hand until i can answer all AI questions correctly
@@ -26,7 +25,7 @@
 - AS a developer i want this project to be available on github so anyone crazy enough can try it out
 - AS a developer i dont think GUI is absolutely necessary
 - AS a developer i think this project does not need a database, can use JSON files
-
+- AS a developer i might need to rework how the days are printed, current implementation is bad because it prints the days one per line, taking a lot of space, leading to bad UX
 
 
 ## WORKFLOW
