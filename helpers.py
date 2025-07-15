@@ -145,8 +145,20 @@ def scheduler(length_input: int, keepdata_input: str):
             else:
                 print("Check your formatting and try again.")
 
+def scheduler_read():
+    with open("scheduler.json", "r") as storage:
+        storage.seek(0,2)
+
+        if storage.tell() == 0:
+            return "empty"
+
+        else:
+            storage.seek(0)
+            existing_data = json.load(storage)
+            return existing_data
+
 def scheduler_write(temp_list: list, keep_list: list = None):
-    with open(f"scheduler.json", "r+") as storage:
+    with open("scheduler.json", "r+") as storage:
         storage.seek(0,2)
 
         # If file is empty        
@@ -170,6 +182,11 @@ def scheduler_write(temp_list: list, keep_list: list = None):
 
 def schedule_loop(length_input, keepdata_input):
     keep_list = []
+    
+    if scheduler_read() == "empty":
+        print("Storage is currently empty.")
+        return "k"
+    
     while True:
         user_input = input("What to keep? Format: day/hourstart:minute, day/hourend:minute (write k when done): ")
 

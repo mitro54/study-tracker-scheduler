@@ -39,16 +39,17 @@ def scheduler():
  
                         # Yes
                         if keepdata_input == "y":
-                            print("Previous schedule gets printed here")
+                            if helpers.scheduler_read() == "empty":
+                                print("There is no previous schedule.")
+                                continue
+                            print(helpers.scheduler_read())
                             loop_checker = True
 
                             # call the next while loop function for keep_list
-                            while True:
-                                helpers.schedule_loop(length_input, keepdata_input)
+                            helpers.schedule_loop(length_input, keepdata_input)
 
-                                # Okay
-                                if helpers.schedule_loop == "k" or helpers.schedule_loop == "b":
-                                    break
+                            if helpers.schedule_loop == "k" or helpers.schedule_loop == "b":
+                                break
 
                         # No
                         elif keepdata_input == "n":
