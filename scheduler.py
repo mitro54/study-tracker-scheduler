@@ -46,7 +46,7 @@ def scheduler():
                             loop_checker = True
 
                             # call the next while loop function for keep_list
-                            helpers.schedule_loop(length_input, keepdata_input)
+                            helpers.schedule_loop(length_input)
 
                             if helpers.schedule_loop == "k" or helpers.schedule_loop == "b":
                                 break
@@ -55,7 +55,7 @@ def scheduler():
                         elif keepdata_input == "n":
                             # Start generating schedule
                             print("Generating new schedule")
-                            helpers.scheduler_write(helpers.scheduler(length_input, keepdata_input))
+                            helpers.scheduler_write(helpers.scheduler(length_input))
                             loop_checker = True
                             break
                         

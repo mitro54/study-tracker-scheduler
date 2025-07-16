@@ -86,7 +86,7 @@ def update_tracker_progress(filename: str, user_input: str):
             else:
                 print(f"Could not find a key: {user_input}")
 
-def scheduler(length_input: int, keepdata_input: str):
+def scheduler(length_input: int):
     # Create a temp list that will store each day, each day is a separate dictionary that has pre generated 48 empty slots for the full day, it should print each 30 min slot on a new line, 00:00 - 23:30
     # Note for later, can add another list here if user wants to add something to all days instead of just one.
     temp_list = []
@@ -137,7 +137,7 @@ def scheduler(length_input: int, keepdata_input: str):
                 break
             
             elif user_input == 'b':
-                break
+                return
 
             elif user_input == 'q':
                 sys.exit()
@@ -172,7 +172,7 @@ def scheduler_write(temp_list: list, keep_list: list = None):
             print(existing_data)
         
             # Also implement logic to save data from the original file that is wanted to be kept
-            if keep_list:
+            if keep_list != None:
                 for key, value in keep_list:
                     print(key, value)
             # Currently the next part only deletes the old data and inserts new
@@ -180,7 +180,7 @@ def scheduler_write(temp_list: list, keep_list: list = None):
             storage.truncate()
             json.dump(temp_list, storage)
 
-def schedule_loop(length_input, keepdata_input):
+def schedule_loop(length_input):
     keep_list = []
     
     if scheduler_read() == "empty":
@@ -193,7 +193,7 @@ def schedule_loop(length_input, keepdata_input):
         # Okay
         if user_input == "k":
             # Then erase everything else from the JSON file and start generating new schedule
-            scheduler_write(scheduler(length_input, keepdata_input), keep_list)
+            scheduler_write(scheduler(length_input), keep_list)
             return "k"
 
         
