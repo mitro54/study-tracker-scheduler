@@ -180,6 +180,10 @@ def scheduler_write(temp_list: list, keep_list: list = None):
                         day, hour = val.split("/", 1)
                         print(day)
                         print(hour)
+                        # Should create a loop that goes through existing data, from start day to end day
+                        # Then figure out logic to actually save everything between them
+                        # Then create logic to maybe overwrite the new storage data from between start and end, by using the same loop to go through the storage, then dump it
+
 
 
             # Currently the next part only deletes the old data and inserts new
