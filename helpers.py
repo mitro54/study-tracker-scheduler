@@ -173,8 +173,15 @@ def scheduler_write(temp_list: list, keep_list: list = None):
         
             # Also implement logic to save data from the original file that is wanted to be kept
             if keep_list != None:
-                for key, value in keep_list:
-                    print(key, value)
+                for idx in keep_list:
+                    print(idx)
+                    for val in idx:
+                        print(val)
+                        day, hour = val.split("/", 1)
+                        print(day)
+                        print(hour)
+
+
             # Currently the next part only deletes the old data and inserts new
             storage.seek(0)
             storage.truncate()
@@ -212,4 +219,4 @@ def scheduler_keepdata_loop(length_input):
             keep_list.append(tuple(result_list))
 
         else:
-            print("Check your formatting and try again.")
+            print("Check your formatting and try again. (Days must marked as 01, not 1 for example.)")
