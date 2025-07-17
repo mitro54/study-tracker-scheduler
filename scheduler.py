@@ -46,9 +46,9 @@ def scheduler():
                             loop_checker = True
 
                             # call the next while loop function for keep_list
-                            helpers.schedule_loop(length_input)
+                            helpers.scheduler_keepdata_loop(length_input)
 
-                            if helpers.schedule_loop == "k" or helpers.schedule_loop == "b":
+                            if helpers.scheduler_keepdata_loop == "k" or helpers.scheduler_keepdata_loop == "b":
                                 break
 
                         # No

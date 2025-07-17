@@ -180,7 +180,7 @@ def scheduler_write(temp_list: list, keep_list: list = None):
             storage.truncate()
             json.dump(temp_list, storage)
 
-def schedule_loop(length_input):
+def scheduler_keepdata_loop(length_input):
     keep_list = []
     
     if scheduler_read() == "empty":
