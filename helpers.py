@@ -170,6 +170,7 @@ def scheduler_write(temp_list: list, keep_list: list = None):
             storage.seek(0)
             existing_data = json.load(storage)
             print(existing_data)
+            # Create logic that prints 4-6 slots per line to make the overall print length shorter
         
             # Also implement logic to save data from the original file that is wanted to be kept
             if keep_list != None:
