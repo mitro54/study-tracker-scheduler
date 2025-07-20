@@ -92,7 +92,6 @@ def scheduler(length_input: int):
     temp_list = []
 
     for i in range(0, int(length_input)):
-        # a function call here to generate the dictionary
         day = generate_empty_day()
 
         # then start filling the day
