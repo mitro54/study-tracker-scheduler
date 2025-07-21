@@ -169,7 +169,7 @@ def scheduler_write(temp_list: list, keep_list: list = None):
             storage.seek(0)
             existing_data = json.load(storage)
             print(existing_data)
-            # Create logic that prints 4-6 slots per line to make the overall print length shorter
+            # Also later create logic that prints 4-6 slots per line to make the overall print length shorter
         
             # Also implement logic to save data from the original file that is wanted to be kept
             if keep_list != None:
@@ -180,6 +180,10 @@ def scheduler_write(temp_list: list, keep_list: list = None):
                         day, hour = val.split("/", 1)
                         print(day)
                         print(hour)
+                        for day in existing_data:
+                            # Make this loop go through idx instead of whole schedule
+                            print(day)
+
                         # Should create a loop that goes through existing data, from start day to end day
                         # Then figure out logic to actually save everything between them
                         # Then create logic to maybe overwrite the new storage data from between start and end, by using the same loop to go through the storage, then dump it
@@ -201,7 +205,6 @@ def scheduler_keepdata_loop(length_input):
     while True:
         user_input = input("What to keep? Format: day/hourstart:minute, day/hourend:minute (write k when done): ")
 
-        # Okay
         if user_input == "k":
             # Then erase everything else from the JSON file and start generating new schedule
             scheduler_write(scheduler(length_input), keep_list)
