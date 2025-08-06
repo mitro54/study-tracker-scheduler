@@ -174,20 +174,31 @@ def scheduler_write(temp_list: list, keep_list: list = None):
             # Also implement logic to save data from the original file that is wanted to be kept
             if keep_list != None:
                 for idx in keep_list:
-                    print(idx)
+                    day_range = []
+                    hour_range = []
                     for val in idx:
-                        print(val)
                         day, hour = val.split("/", 1)
-                        print(day)
+                        day_range.append(int(day))
+                        hour_range.append(hour)
                         print(hour)
-                        for day in existing_data:
-                            # Make this loop go through idx instead of whole schedule
-                            # if existing data day idx is under 10, remove the 0 from the day, then match it with idx of the day - 1, then match the hour start with the day hours, and let the loop run until day end and hour end is reached
-                            print(day)
+                        print(hour_range)
+                    for i in range(day_range[0], day_range[1]):
+                        for hour_idx in existing_data[i]:
+                            if day_range[0]:
+                                if hour_idx != hour_range[0]:
+                                    continue
+                                else:
+                                    # start printing hours, look into on/off logic, if it hits it then it should keep on until another hit
+                            elif i != day_range[0] & i != day_range[1]:
+                                print(hour_idx)
+                            elif day_range[1]:
+                                if hour_idx <= hour_range[1]:
+                                    print(hour_idx) 
+                    # match the hour start with the day hours, and let the loop run until day end and hour end is reached
 
-                        # Should create a loop that goes through existing data, from start day to end day
-                        # Then figure out logic to actually save everything between them
-                        # Then create logic to maybe overwrite the new storage data from between start and end, by using the same loop to go through the storage, then dump it
+                    # Should create a loop that goes through existing data, from start day to end day
+                    # Then figure out logic to actually save everything between them
+                    # Then create logic to maybe overwrite the new storage data from between start and end, by using the same loop to go through the storage, then dump it
 
 
 
