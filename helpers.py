@@ -182,6 +182,7 @@ def scheduler_write(temp_list: list, keep_list: list = None):
                         print(hour)
                         for day in existing_data:
                             # Make this loop go through idx instead of whole schedule
+                            # if existing data day idx is under 10, remove the 0 from the day, then match it with idx of the day - 1, then match the hour start with the day hours, and let the loop run until day end and hour end is reached
                             print(day)
 
                         # Should create a loop that goes through existing data, from start day to end day
