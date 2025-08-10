@@ -185,11 +185,10 @@ def scheduler_write(temp_list: list, keep_list: list = None):
                     
                     hour_range_found = False
                     for i in range(day_range[0], day_range[1] + 1):
-                        print(f"current day_range {i}")
-                        print(f"{day_range[0]} and {day_range[1]}")
-                        for hour_idx in existing_data[i]:
+
+                        for hour_idx in existing_data[i - 1]:
                             if i == day_range[0]:
-                                # start printing hours, look into on/off logic, if it hits it then it should keep running until another hit
+                                # start checking hours, if it hits, then should keep running until another hit
                                 if hour_idx == hour_range[0]:
                                     hour_range_found = True
 
