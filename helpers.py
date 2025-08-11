@@ -180,13 +180,13 @@ def scheduler_write(temp_list: list, keep_list: list = None):
                         day, hour = val.split("/", 1)
                         day_range.append(int(day))
                         hour_range.append(hour)
-                        print(hour)
-                        print(hour_range)
                     
                     hour_range_found = False
                     for i in range(day_range[0], day_range[1] + 1):
 
                         for hour_idx in existing_data[i - 1]:
+                            hour_data = existing_data[i - 1].get(hour_idx)
+                            print(hour_data)
                             if i == day_range[0]:
                                 # start checking hours, if it hits, then should keep running until another hit
                                 if hour_idx == hour_range[0]:
@@ -197,6 +197,7 @@ def scheduler_write(temp_list: list, keep_list: list = None):
 
                             elif i == day_range[1]:
                                 if hour_idx == hour_range[1]:
+                                    print(hour_idx)
                                     hour_range_found = False
                                     break
                                 print(hour_idx)
@@ -204,8 +205,6 @@ def scheduler_write(temp_list: list, keep_list: list = None):
                             elif i != day_range[0] & i != day_range[1]:
                                 print(hour_idx)
 
-
-                    # match the hour start with the day hours, and let the loop run until day end and hour end is reached
 
                     # Should create a loop that goes through existing data, from start day to end day
                     # Then figure out logic to actually save everything between them
