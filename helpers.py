@@ -173,6 +173,7 @@ def scheduler_write(temp_list: list, keep_list: list = None):
         
             # Also implement logic to save data from the original file that is wanted to be kept
             if keep_list != None:
+                temp_storage = []
                 for idx in keep_list:
                     day_range = []
                     hour_range = []
@@ -186,6 +187,8 @@ def scheduler_write(temp_list: list, keep_list: list = None):
 
                         for hour_idx in existing_data[i - 1]:
                             hour_data = existing_data[i - 1].get(hour_idx)
+                            temp_storage.append((hour_idx, hour_data))
+                            print(temp_storage)
                             print(hour_data)
                             if i == day_range[0]:
                                 # start checking hours, if it hits, then should keep running until another hit
