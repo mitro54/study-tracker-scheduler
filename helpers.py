@@ -204,18 +204,10 @@ def scheduler_write(temp_list: list, keep_list: list = None):
                                 if hour_data != "":
                                     temp_list[i - 1][hour_idx] = hour_data
 
-                            elif i != day_range[0] & i != day_range[1]:
+                            elif i != day_range[0] and i != day_range[1]:
                                 if hour_data != "":
                                     temp_list[i - 1][hour_idx] = hour_data
 
-
-                    # Should create a loop that goes through existing data, from start day to end day
-                    # Then figure out logic to actually save everything between them
-                    # Then create logic to maybe overwrite the new storage data from between start and end, by using the same loop to go through the storage, then dump it
-
-
-
-            # Currently the next part only deletes the old data and inserts new
             storage.seek(0)
             storage.truncate()
             json.dump(temp_list, storage)
