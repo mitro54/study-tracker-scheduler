@@ -173,7 +173,6 @@ def scheduler_write(temp_list: list, keep_list: list = None):
         
             # Also implement logic to save data from the original file that is wanted to be kept
             if keep_list != None:
-                temp_storage = []
                 for idx in keep_list:
                     day_range = []
                     hour_range = []
@@ -184,29 +183,30 @@ def scheduler_write(temp_list: list, keep_list: list = None):
                     
                     hour_range_found = False
                     for i in range(day_range[0], day_range[1] + 1):
-
                         for hour_idx in existing_data[i - 1]:
-                            hour_data = existing_data[i - 1].get(hour_idx)
-                            temp_storage.append((hour_idx, hour_data))
-                            print(temp_storage)
-                            print(hour_data)
+                            hour_data = existing_data[i - 1].get(hour_idx, "")
+                            print(temp_list)
                             if i == day_range[0]:
                                 # start checking hours, if it hits, then should keep running until another hit
                                 if hour_idx == hour_range[0]:
                                     hour_range_found = True
 
                                 if hour_range_found:
-                                    print(hour_idx)
+                                    if hour_data != "":
+                                        temp_list[i - 1][hour_idx] = hour_data
 
                             elif i == day_range[1]:
                                 if hour_idx == hour_range[1]:
-                                    print(hour_idx)
+                                    if hour_data != "":
+                                        temp_list[i - 1][hour_idx] = hour_data
                                     hour_range_found = False
                                     break
-                                print(hour_idx)
+                                if hour_data != "":
+                                    temp_list[i - 1][hour_idx] = hour_data
 
                             elif i != day_range[0] & i != day_range[1]:
-                                print(hour_idx)
+                                if hour_data != "":
+                                    temp_list[i - 1][hour_idx] = hour_data
 
 
                     # Should create a loop that goes through existing data, from start day to end day
