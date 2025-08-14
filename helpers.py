@@ -185,7 +185,7 @@ def scheduler_write(temp_list: list, keep_list: list = None):
                     for i in range(day_range[0], day_range[1] + 1):
                         for hour_idx in existing_data[i - 1]:
                             hour_data = existing_data[i - 1].get(hour_idx, "")
-                            print(temp_list)
+
                             if i == day_range[0]:
                                 # start checking hours, if it hits, then should keep running until another hit
                                 if hour_idx == hour_range[0]:
