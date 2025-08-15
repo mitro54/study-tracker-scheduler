@@ -144,7 +144,7 @@ def scheduler(length_input: int):
             else:
                 print("Check your formatting and try again.")
 
-def scheduler_read():
+def scheduler_read(day: str = None):
     with open("scheduler.json", "r") as storage:
         storage.seek(0,2)
 
@@ -154,6 +154,10 @@ def scheduler_read():
         else:
             storage.seek(0)
             existing_data = json.load(storage)
+
+            if day:
+                return existing_data[int(day)]
+
             return existing_data
 
 def scheduler_write(temp_list: list, keep_list: list = None):
@@ -171,7 +175,6 @@ def scheduler_write(temp_list: list, keep_list: list = None):
             print(existing_data)
             # Also later create logic that prints 4-6 slots per line to make the overall print length shorter
         
-            # Also implement logic to save data from the original file that is wanted to be kept
             if keep_list != None:
                 for idx in keep_list:
                     day_range = []
@@ -187,7 +190,7 @@ def scheduler_write(temp_list: list, keep_list: list = None):
                             hour_data = existing_data[i - 1].get(hour_idx, "")
 
                             if i == day_range[0]:
-                                # start checking hours, if it hits, then should keep running until another hit
+                                # start checking hours, if it hits, keep running until another hit
                                 if hour_idx == hour_range[0]:
                                     hour_range_found = True
 

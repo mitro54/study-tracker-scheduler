@@ -86,7 +86,7 @@ def scheduler():
         # Modify current schedule
         elif user_input == "3":
 
-            print("Current schedule gets printed here")
+            print(helpers.scheduler_read())
             while True:
                 user_input = input("Which day would you like to modify?: ").lower()
                 loop_checker = False
@@ -97,7 +97,7 @@ def scheduler():
                     input_holder = {}
 
                     while True:
-                        print("Selected days schedule prints here")
+                        print(helpers.scheduler_read(user_input))
                         user_input = input("Modify your schedule in following format: 00:00-01:00: example , (d) when Done: ").lower()
 
                         # Back
