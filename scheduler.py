@@ -111,7 +111,7 @@ def scheduler():
                             break
 
                         elif re.search(r"^([01][0-9]|2[0-3]):([0-5][0-9])-([01][0-9]|2[0-3]):([0-5][0-9]), ", modify_input):
-                            helpers.scheduler_modify(modify_input)
+                            helpers.scheduler_modify(modify_input, int(user_input) - 1)
 
                         else:
                             print("Check your formatting and try again.")

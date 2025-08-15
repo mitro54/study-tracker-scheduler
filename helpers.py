@@ -156,7 +156,7 @@ def scheduler_read(day: str = None):
             existing_data = json.load(storage)
 
             if day:
-                return existing_data[int(day)]
+                return existing_data[int(day) - 1]
 
             return existing_data
 
@@ -248,6 +248,39 @@ def scheduler_keepdata_loop(length_input):
         else:
             print("Check your formatting and try again. (Days must marked as 01, not 1 for example.)")
 
-def scheduler_modify(modify_input):
-    print("works")
-    return
+def scheduler_modify(modify_input, day_idx):
+
+    with open(f"scheduler.json", "r+") as storage:
+        storage.seek(0,2)
+    
+        # If file is empty        
+        if storage.tell() == 0:
+            print("There is nothing to update. Create a schedule first.")
+        
+        # If file is not empty
+        else:
+            storage.seek(0)
+            data = json.load(storage)
+            data_copy = data.copy()
+
+        # split string in to 3 parts, start_time, end_time, task
+        time_range, task = modify_input.split(",", 1)
+        start_time, end_time = time_range.strip().split("-", 1)
+
+        # create new dictionary with times from start_time to end_time, add task to them
+        in_range = {
+            time: task
+            for time, task in data_copy[day_idx].items()
+            if start_time <= time <= end_time
+        }
+
+        # iterate over in_range, update key value pairs to match it in day dictionary
+        for key in in_range:
+            data_copy[day_idx][key] = task
+        
+        # print current full schedule
+        for key in data_copy[day_idx]:
+            print(f"{key}:{data_copy[day_idx].get(key)}")
+
+        scheduler_write(data_copy)
+        return
