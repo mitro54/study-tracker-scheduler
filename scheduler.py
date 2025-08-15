@@ -9,7 +9,7 @@ def scheduler():
         # See current schedule
         if user_input == "1":
             while True:
-                print("Full schedule prints here")
+                print(helpers.scheduler_read())
                 user_input = input("Do you want to upload schedule to Google Calendar? y/n: ").lower()
 
                 # Yes
