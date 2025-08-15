@@ -94,29 +94,28 @@ def scheduler():
                 # Testing if input is int
                 try:
                     int(user_input)
-                    input_holder = {}
 
                     while True:
                         print(helpers.scheduler_read(user_input))
-                        user_input = input("Modify your schedule in following format: 00:00-01:00, example , (d) when Done: ").lower()
+                        modify_input = input("Modify your schedule in following format: 00:00-01:00, example , (d) when Done: ").lower()
 
                         # Back
-                        if user_input == "b":
-                            input_holder = {}
+                        if modify_input == "b":
                             break
 
-                        elif user_input == "q":
+                        elif modify_input == "q":
                             sys.exit("Quitting...")
-                        
 
-                        # If user_input passes regex, prepare it for the dictionary and then push it to dictionary                     
-                        # input_holder.update(user_input)
-                        
-                        # After user is done, push the input_holders data to JSON, clear input_holder
-                        if user_input == "d":
-                            input_holder = {}
+                        elif modify_input == "d":
                             loop_checker = True
                             break
+
+                        elif re.search(r"^([01][0-9]|2[0-3]):([0-5][0-9])-([01][0-9]|2[0-3]):([0-5][0-9]), ", modify_input):
+                            helpers.scheduler_modify(modify_input)
+
+                        else:
+                            print("Check your formatting and try again.")
+                            
                         
                     if loop_checker:
                         break

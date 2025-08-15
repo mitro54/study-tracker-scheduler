@@ -248,8 +248,6 @@ def scheduler_keepdata_loop(length_input):
         else:
             print("Check your formatting and try again. (Days must marked as 01, not 1 for example.)")
 
-        def scheduler_modify():
-            if re.search(r"^([01][0-9]|2[0-3]):([0-5][0-9])-([01][0-9]|2[0-3]):([0-5][0-9]), ", user_input):
-                print("placeholder")
-            else:
-                print("Check your formatting and try again.")
+def scheduler_modify(modify_input):
+    print("works")
+    return
