@@ -139,15 +139,9 @@ def scheduler():
                 # Add new hours
                 if user_input == "1":
                     while True:
-                        user_input = input("Add non negotiable hours, in following format: 00:00-01:00: example , (d) when Done: ").lower()
-
-                        # If user_input passes regex, prepare it for the dictionary and then push it to dictionary                     
-                        # input_holder.update(user_input)
+                        user_input = input("Add non negotiable hours, in following format: 00:00-01:00, example , (d) when Done: ").lower()
                         
-                        # After user is done, push the input_holders data to JSON, clear input_holder
-
                         if user_input == "b" or user_input == "d":
-                            input_holder = {}
                             break
 
                         elif user_input == "q":
@@ -156,15 +150,9 @@ def scheduler():
                 # Modify current hours
                 elif user_input == "2":
                     while True:
-                        user_input = input("Modify non negotiable hours, in following format: 00:00-01:00: example , (d) when Done: ").lower()
-
-                        # If user_input passes regex, prepare it for the dictionary and then push it to dictionary                     
-                        # input_holder.update(user_input)
-                        
-                        # After user is done, push the input_holders data to JSON, clear input_holder
+                        user_input = input("Modify non negotiable hours, in following format: 00:00-01:00, example , (d) when Done: ").lower()                        
                         
                         if user_input == "b" or user_input == "d":
-                            input_holder = {}
                             break
 
                         elif user_input == "q":
