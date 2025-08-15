@@ -98,7 +98,7 @@ def scheduler():
 
                     while True:
                         print(helpers.scheduler_read(user_input))
-                        user_input = input("Modify your schedule in following format: 00:00-01:00: example , (d) when Done: ").lower()
+                        user_input = input("Modify your schedule in following format: 00:00-01:00, example , (d) when Done: ").lower()
 
                         # Back
                         if user_input == "b":
