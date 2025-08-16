@@ -139,24 +139,37 @@ def scheduler():
                 # Add new hours
                 if user_input == "1":
                     while True:
-                        user_input = input("Add non negotiable hours, in following format: 00:00-01:00, example , (d) when Done: ").lower()
+                        nonneg_input = input("Add non negotiable hours, in following format: 00:00-01:00, example , (d) when Done: ").lower()
                         
-                        if user_input == "b" or user_input == "d":
+                        if nonneg_input == "b" or nonneg_input == "d":
                             break
 
-                        elif user_input == "q":
+                        elif nonneg_input == "q":
                             sys.exit("Quitting...")
+
+                        elif re.search(r"^([01][0-9]|2[0-3]):([0-5][0-9])-([01][0-9]|2[0-3]):([0-5][0-9]), ", nonneg_input):
+                            print("placeholder")
+
+                        else:
+                            print("Check your formatting and try again.")
                         
                 # Modify current hours
                 elif user_input == "2":
+                    print("Prints non negotiable hours if any exist here")
                     while True:
-                        user_input = input("Modify non negotiable hours, in following format: 00:00-01:00, example , (d) when Done: ").lower()                        
+                        nonneg_input = input("Modify non negotiable hours, in following format: 00:00-01:00, example , (d) when Done: ").lower()                        
                         
-                        if user_input == "b" or user_input == "d":
+                        if nonneg_input == "b" or nonneg_input == "d":
                             break
 
-                        elif user_input == "q":
+                        elif nonneg_input == "q":
                             sys.exit("Quitting...")
+
+                        elif re.search(r"^([01][0-9]|2[0-3]):([0-5][0-9])-([01][0-9]|2[0-3]):([0-5][0-9]), ", nonneg_input):
+                            print("placeholder")
+
+                        else:
+                            print("Check your formatting and try again.")
 
                 # Back
                 if user_input == "b":
