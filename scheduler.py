@@ -134,21 +134,23 @@ def scheduler():
         elif user_input == "4":
             while True:
                 print("Prints non negotiable hours if any exist here")
+                # Later should create opportunity to select days where you want to apply nonneg hours
                 user_input = input("Do you want to (1) Add new hours or (2) Modify current hours: ").lower()
 
                 # Add new hours
                 if user_input == "1":
                     while True:
-                        nonneg_input = input("Add non negotiable hours, in following format: 00:00-01:00, example , (d) when Done: ").lower()
+                        noneg_input = input("Add non negotiable hours, in following format: 00:00-01:00, example , (d) when Done: ").lower()
                         
-                        if nonneg_input == "b" or nonneg_input == "d":
+                        if noneg_input == "b" or noneg_input == "d":
+                            helpers.scheduler_noneg(noneg_input)
                             break
 
-                        elif nonneg_input == "q":
+                        elif noneg_input == "q":
                             sys.exit("Quitting...")
 
-                        elif re.search(r"^([01][0-9]|2[0-3]):([0-5][0-9])-([01][0-9]|2[0-3]):([0-5][0-9]), ", nonneg_input):
-                            print("placeholder")
+                        elif re.search(r"^([01][0-9]|2[0-3]):([0-5][0-9])-([01][0-9]|2[0-3]):([0-5][0-9]), ", noneg_input):
+                            helpers.scheduler_noneg(noneg_input)
 
                         else:
                             print("Check your formatting and try again.")
@@ -157,15 +159,15 @@ def scheduler():
                 elif user_input == "2":
                     print("Prints non negotiable hours if any exist here")
                     while True:
-                        nonneg_input = input("Modify non negotiable hours, in following format: 00:00-01:00, example , (d) when Done: ").lower()                        
+                        noneg_input = input("Modify non negotiable hours, in following format: 00:00-01:00, example , (d) when Done: ").lower()                        
                         
-                        if nonneg_input == "b" or nonneg_input == "d":
+                        if noneg_input == "b" or noneg_input == "d":
                             break
 
-                        elif nonneg_input == "q":
+                        elif noneg_input == "q":
                             sys.exit("Quitting...")
 
-                        elif re.search(r"^([01][0-9]|2[0-3]):([0-5][0-9])-([01][0-9]|2[0-3]):([0-5][0-9]), ", nonneg_input):
+                        elif re.search(r"^([01][0-9]|2[0-3]):([0-5][0-9])-([01][0-9]|2[0-3]):([0-5][0-9]), ", noneg_input):
                             print("placeholder")
 
                         else:

@@ -204,3 +204,4 @@ __marimo__/
 # Storage files
 tracker.json
 scheduler.json
+noneg.json

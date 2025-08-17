@@ -284,3 +284,14 @@ def scheduler_modify(modify_input, day_idx):
 
         scheduler_write(data_copy)
         return
+
+
+def scheduler_noneg(noneg_input):
+    if noneg_input == "d":
+        # if Done, overwrite the specified parts of scheduler.json with the given list of tuples
+        print("placeholder")
+        
+    else:
+        print("placeholder")
+
+    return
