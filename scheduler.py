@@ -133,7 +133,7 @@ def scheduler():
         # Set up non negotiable hours 
         elif user_input == "4":
             while True:
-                print("Prints non negotiable hours if any exist here")
+                print(helpers.scheduler_noneg_read())
                 # Later should create opportunity to select days where you want to apply nonneg hours
                 user_input = input("Do you want to (1) Add new hours or (2) Modify current hours: ").lower()
 

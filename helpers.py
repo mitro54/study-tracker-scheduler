@@ -309,30 +309,15 @@ def scheduler_noneg(noneg_input: str = None, noneg_temp: list = None, write_only
                 data = json.load(storage)
             
                 # split string in to 3 parts, start_time, end_time, task
-                time_range, task = noneg_input.split(",", 1)
-                start_time, end_time = time_range.strip().split("-", 1)
-
-                # create new dictionary with times from start_time to end_time, add task to them
-                in_range = {
-                    time: task
-                    for time, task in data.items()
-                    if start_time <= time <= end_time
-                }
-
-                # iterate over in_range, update key value pairs to match it in day dictionary
-                for key in in_range:
-                    data[key] = task
+                for noneg_val in data:
+                    noneg_temp.append(noneg_val)
                 
-                # print current full file
-                for key in data:
-                    print(f"{key}:{data.get(key)}")
-                
-                #json.dump(noneg_temp, storage)
-                #Then open scheduler.json and overwrite the non neg hours to it
+                storage.seek(0)
+                storage.truncate()
+                json.dump(noneg_temp, storage)
                 return
         
             else:
-
                 json.dump(noneg_temp, storage)
 
     elif write_only is not None:
