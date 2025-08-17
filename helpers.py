@@ -314,7 +314,6 @@ def scheduler_noneg(noneg_input: str = None, noneg_temp: list = None, write_only
                 storage.seek(0)
                 storage.truncate()
                 json.dump(noneg_temp, storage)
-                return
         
             else:
                 json.dump(noneg_temp, storage)
