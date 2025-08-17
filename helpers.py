@@ -284,13 +284,60 @@ def scheduler_modify(modify_input, day_idx):
 
         scheduler_write(data_copy)
         return
+    
+def scheduler_noneg_read():
+    with open("noneg.json", "r") as storage:
+        storage.seek(0,2)
+
+        if storage.tell() == 0:
+            return "empty"
+
+        else:
+            storage.seek(0)
+            existing_data = json.load(storage)
+            return existing_data
 
 
-def scheduler_noneg(noneg_input):
+def scheduler_noneg(noneg_input: str = None, noneg_temp: list = None, write_only: str = None):
     if noneg_input == "d":
-        # if Done, overwrite the specified parts of scheduler.json with the given list of tuples
-        print("placeholder")
+        # if Done, save to noneg.json, overwrite the specified parts of scheduler.json with the given list of dictionaries, should also call this function with write_only whenever creating new schedule
+        with open(f"noneg.json", "r+") as storage:
         
+            # If file is not empty        
+            if scheduler_noneg_read() != "empty":
+                storage.seek(0)
+                data = json.load(storage)
+            
+                # split string in to 3 parts, start_time, end_time, task
+                time_range, task = noneg_input.split(",", 1)
+                start_time, end_time = time_range.strip().split("-", 1)
+
+                # create new dictionary with times from start_time to end_time, add task to them
+                in_range = {
+                    time: task
+                    for time, task in data.items()
+                    if start_time <= time <= end_time
+                }
+
+                # iterate over in_range, update key value pairs to match it in day dictionary
+                for key in in_range:
+                    data[key] = task
+                
+                # print current full file
+                for key in data:
+                    print(f"{key}:{data.get(key)}")
+                
+                #json.dump(noneg_temp, storage)
+                #Then open scheduler.json and overwrite the non neg hours to it
+                return
+        
+            else:
+
+                json.dump(noneg_temp, storage)
+
+    elif write_only is not None:
+        print("placeholder")
+
     else:
         print("placeholder")
 
