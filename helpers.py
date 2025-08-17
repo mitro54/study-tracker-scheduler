@@ -305,7 +305,6 @@ def scheduler_noneg(noneg_input: str = None, noneg_temp: list = None, write_only
         
             # If file is not empty
             if scheduler_noneg_read() != "No non negotiable hours, add some!":
-                storage.seek(0)
                 data = json.load(storage)
             
                 for noneg_val in data:
@@ -318,8 +317,12 @@ def scheduler_noneg(noneg_input: str = None, noneg_temp: list = None, write_only
             else:
                 json.dump(noneg_temp, storage)
 
+        with open(f"scheduler.json", "r+") as scheduler_storage:
+            data = json.load(scheduler_storage)
+
     elif write_only is not None:
-        print("placeholder")
+        with open(f"scheduler.json", "r+") as scheduler_storage:
+            data = json.load(scheduler_storage)
 
     else:
         print("placeholder")
