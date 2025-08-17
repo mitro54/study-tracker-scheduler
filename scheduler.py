@@ -144,19 +144,27 @@ def scheduler():
                         noneg_input = input("Add non negotiable hours, in following format: 00:00-01:00, example , (d) when Done: ").lower()
                         
                         if noneg_input == "b":
+                            noneg_temp = []
                             break
 
                         elif noneg_input == "d":
                             # Pass the temp list to scheduler_noneg 
                             helpers.scheduler_noneg(noneg_input, noneg_temp)
+                            noneg_temp = []
                             break
 
                         elif noneg_input == "q":
                             sys.exit("Quitting...")
 
                         elif re.search(r"^([01][0-9]|2[0-3]):([0-5][0-9])-([01][0-9]|2[0-3]):([0-5][0-9]), ", noneg_input):
-                            # split it to dictionary with start end and task
-                            print("placeholder")
+
+                            # split string in to 3 parts, start_time, end_time, task
+                            time_range, task = noneg_input.split(",", 1)
+                            start_time, end_time = time_range.strip().split("-", 1)
+
+                            data_dictionary = {"start": start_time, "end": end_time, "task": task}
+                            noneg_temp.append(data_dictionary)
+                            print(noneg_temp)
 
                         else:
                             print("Check your formatting and try again.")
