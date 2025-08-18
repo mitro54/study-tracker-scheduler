@@ -298,7 +298,7 @@ def scheduler_noneg_read():
             return existing_data
 
 
-def scheduler_noneg(noneg_input: str = None, noneg_temp: list = None, write_only: str = None):
+def scheduler_noneg(noneg_input: str = None, noneg_temp: list = None, write_only: int = None):
     if noneg_input == "d":
         # if Done, save to noneg.json, overwrite the specified parts of scheduler.json with the given list of dictionaries, should also call this function with write_only whenever creating new schedule
         with open(f"noneg.json", "r+") as storage:
@@ -324,7 +324,7 @@ def scheduler_noneg(noneg_input: str = None, noneg_temp: list = None, write_only
         
             # If file is empty        
             if scheduler_storage.tell() == 0:
-                print("Placeholder")
+                print("Cannot find a schedule, will add non negotiable hours to it once you make a schedule.")
             
             # If file is not empty
             else:
