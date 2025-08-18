@@ -290,7 +290,7 @@ def scheduler_noneg_read():
         storage.seek(0,2)
 
         if storage.tell() == 0:
-            return "empty"
+            return "No non negotiable hours, add some!"
 
         else:
             storage.seek(0)
@@ -317,8 +317,45 @@ def scheduler_noneg(noneg_input: str = None, noneg_temp: list = None, write_only
             else:
                 json.dump(noneg_temp, storage)
 
+        # Then overwrite the parts of scheduler.json
         with open(f"scheduler.json", "r+") as scheduler_storage:
             data = json.load(scheduler_storage)
+            scheduler_storage.seek(0,2)
+        
+            # If file is empty        
+            if scheduler_storage.tell() == 0:
+                print("Placeholder")
+            
+            # If file is not empty
+            else:
+                scheduler_storage.seek(0)
+                data = json.load(scheduler_storage)
+                data_copy = data.copy()
+
+            # Run following for each day separately
+            for day in range(0, len(data_copy) + 1):
+
+                # split to 3 parts, start, end, task
+                for dictionary in noneg_temp:
+                    task = dictionary["task"]
+                    start = dictionary["start"]
+                    end = dictionary["end"]
+                    print(task, start, end)
+
+                # create new dictionary with times from start to end, add task to them
+                in_range = {
+                    time: task
+                    for time, task in data_copy[day - 1].items()
+                    if start <= time <= end
+                }
+
+                # iterate over in_range, update key value pairs to match it in day dictionary
+                for key in in_range:
+                    data_copy[day - 1][key] = task
+
+            scheduler_storage.seek(0)
+            scheduler_storage.truncate()    
+            json.dump(data_copy, scheduler_storage)
 
     elif write_only is not None:
         with open(f"scheduler.json", "r+") as scheduler_storage:
