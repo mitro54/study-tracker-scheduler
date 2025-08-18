@@ -172,7 +172,6 @@ def scheduler_write(temp_list: list, keep_list: list = None):
         else:
             storage.seek(0)
             existing_data = json.load(storage)
-            print(existing_data)
             # Also later create logic that prints 4-6 slots per line to make the overall print length shorter
         
             if keep_list != None:
@@ -214,6 +213,9 @@ def scheduler_write(temp_list: list, keep_list: list = None):
             storage.seek(0)
             storage.truncate()
             json.dump(temp_list, storage)
+    
+    # Function call for setting the non negotiable hours
+    scheduler_noneg(write_only=True)
 
 def scheduler_keepdata_loop(length_input):
     keep_list = []
@@ -283,7 +285,6 @@ def scheduler_modify(modify_input, day_idx):
             print(f"{key}:{data_copy[day_idx].get(key)}")
 
         scheduler_write(data_copy)
-        return
     
 def scheduler_noneg_read():
     with open("noneg.json", "r") as storage:
@@ -358,10 +359,46 @@ def scheduler_noneg(noneg_input: str = None, noneg_temp: list = None, write_only
             json.dump(data_copy, scheduler_storage)
 
     elif write_only is True:
+        noneg_data = scheduler_noneg_read()
         with open(f"scheduler.json", "r+") as scheduler_storage:
             data = json.load(scheduler_storage)
+            scheduler_storage.seek(0,2)
+        
+            # If file is empty        
+            if scheduler_storage.tell() == 0:
+                print("Cannot find a schedule, will add non negotiable hours to it once you make a schedule.")
+            
+            # If file is not empty
+            else:
+                scheduler_storage.seek(0)
+                data = json.load(scheduler_storage)
+                data_copy = data.copy()
+
+            # Run following for each day separately
+            for day in range(0, len(data_copy) + 1):
+
+                # split to 3 parts, start, end, task
+                if noneg_data != "No non negotiable hours, add some!":
+                    for dictionary in noneg_data:
+                        task = dictionary["task"]
+                        start = dictionary["start"]
+                        end = dictionary["end"]
+
+                    # create new dictionary with times from start to end, add task to them
+                    in_range = {
+                        time: task
+                        for time, task in data_copy[day - 1].items()
+                        if start <= time <= end
+                    }
+
+                    # iterate over in_range, update key value pairs to match it in day dictionary
+                    for key in in_range:
+                        data_copy[day - 1][key] = task
+
+            scheduler_storage.seek(0)
+            scheduler_storage.truncate()    
+            json.dump(data_copy, scheduler_storage)
+            print(data_copy)
 
     else:
-        print("placeholder")
-
-    return
+        print("placeholder at end of scheduler_noneg")
