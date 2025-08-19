@@ -171,9 +171,10 @@ def scheduler():
                         
                 # Modify current hours
                 elif user_input == "2":
+                    noneg_temp = []
                     noneg_data = helpers.scheduler_noneg_read()
                     if noneg_data == "No non negotiable hours, add some!":
-                        print(helpers.scheduler_noneg_read())
+                        continue
                     else:
                         while True:
                             noneg_input = input("Modify non negotiable hours, in following format: 00:00-01:00, example , (d) when Done: ").lower()                        
@@ -184,7 +185,7 @@ def scheduler():
 
                             elif noneg_input == "d":
                                 # Pass the temp list to noneg_write
-                                helpers.scheduler_noneg(noneg_input, noneg_temp)
+                                helpers.scheduler_noneg_modify(noneg_temp)
                                 noneg_temp = []
                                 break
 

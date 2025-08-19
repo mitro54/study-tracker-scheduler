@@ -402,3 +402,24 @@ def scheduler_noneg(noneg_input: str = None, noneg_temp: list = None, write_only
 
     else:
         print("placeholder at end of scheduler_noneg")
+
+def scheduler_noneg_modify(noneg_temp: list):
+    with open(f"noneg.json", "r+") as noneg_storage:
+        data = json.load(noneg_storage)
+        data_copy = data.copy()
+
+        for idx in range(0, len(data_copy) + 1):
+
+            for dictionary in noneg_temp:
+                task = dictionary["task"]
+                start = dictionary["start"]
+                end = dictionary["end"]
+
+                if data_copy[idx - 1].get("start") == start and data_copy[idx - 1].get("end") == end:
+                    data_copy[idx - 1]["task"] = task
+                else:
+                    print(f"Could not find {task} in range {start}-{end}")
+        
+        noneg_storage.seek(0)
+        noneg_storage.truncate()
+        json.dump(data_copy, noneg_storage)
