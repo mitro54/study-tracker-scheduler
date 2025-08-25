@@ -15,7 +15,7 @@ def scheduler():
                 # Yes
                 if user_input == "y":
                     print("Uploading schedule to Google Calendar...")
-                    # If ok ... print "success!"
+                    helpers.insert_to_calendar()
                     break
                 
                 # No or Back

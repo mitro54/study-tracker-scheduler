@@ -2,6 +2,9 @@
 import json
 import sys
 import re
+import quickstart
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 
 def generate_empty_day():
     # generate a dictionary with 48 keys with empty values
@@ -423,3 +426,19 @@ def scheduler_noneg_modify(noneg_temp: list):
         noneg_storage.seek(0)
         noneg_storage.truncate()
         json.dump(data_copy, noneg_storage)
+
+def insert_to_calendar():
+    service = quickstart.get_service()
+
+    helsinki = ZoneInfo("Europe/Helsinki")
+    start = datetime(2025, 8, 25, 12, 0, tzinfo=helsinki)
+    end   = start + timedelta(hours=1)
+
+    event = {
+        "summary": "Test",
+        "start": {"dateTime": start.isoformat(), "timeZone": "Europe/Helsinki"},
+        "end":   {"dateTime": end.isoformat(),   "timeZone": "Europe/Helsinki"},
+    }
+
+    created = service.events().insert(calendarId="primary", body=event).execute()
+    print(f"Uploaded succesfully: {created.get("htmlLink")}")
