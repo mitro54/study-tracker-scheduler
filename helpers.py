@@ -428,8 +428,15 @@ def scheduler_noneg_modify(noneg_temp: list):
         json.dump(data_copy, noneg_storage)
 
 def insert_to_calendar():
-    service = quickstart.get_service()
+    with open(f"scheduler.json", "r+") as storage:
+        data = json.load(storage)
 
+    for day in data:
+        for time, task in day.items():
+            hh, mm = time.split(":")
+            print(f"time = {time}, hour = {hh}, minute = {mm}, task = {task}")
+            
+    service = quickstart.get_service()
     helsinki = ZoneInfo("Europe/Helsinki")
     start = datetime(2025, 8, 25, 12, 0, tzinfo=helsinki)
     end   = start + timedelta(hours=1)
